@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
       }
     }
-  })
+  });
 
   // Timer
 
@@ -207,5 +207,96 @@ window.addEventListener('DOMContentLoaded', function() {
 
   sendForm(formContact);
 
-  
+  // slider
+
+  let slider = document.querySelector('.slider'),
+      dots = slider.querySelectorAll('.dot'),
+      dotWrap = slider.querySelector('.slider-dots'),
+      prev = slider.querySelector('.prev'),
+      next = slider.querySelector('.next'),
+      items = slider.querySelectorAll('.slider-item'),
+      sliderIndex = 1;
+
+  showSlides(sliderIndex);
+
+  function showSlides(n) {
+    if (n > items.length) {
+      sliderIndex = 1;
+    }
+    if (n < 1) {
+      sliderIndex = items.length;
+    }
+
+    items.forEach((item) => item.style.display = 'none');
+    dots.forEach((item) => item.classList.remove('dot-active'))
+
+    items[sliderIndex - 1].style.display = 'block';
+    dots[sliderIndex - 1].classList.add('dot-active');
+
+  }
+
+  function plusSlide(n) {
+    showSlides(sliderIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(sliderIndex = n);
+  }
+
+  prev.addEventListener('click', function() {
+    plusSlide(-1);
+  });
+
+  next.addEventListener('click', function() {
+    plusSlide(1);
+  });
+
+  dotWrap.addEventListener('click', function(event) {
+    for (let i = 0; i < dots.length + 1; i++) {
+      if (event.target && event.target == dots[i - 1]) {
+        currentSlide(i);
+      }
+    }
+  });
+
+  // calc
+
+  let personInput = document.querySelectorAll('.counter-block-input')[0],
+      dayInput = document.querySelectorAll('.counter-block-input')[1],
+      totalValue = document.querySelector('#total'),
+      select = document.querySelector('#select'),
+      total = 0,
+      daySum = 0,
+      personSum = 0;
+
+  personInput.addEventListener('change', function() {
+    personSum += +this.value;
+
+    if (personInput.value != '' && dayInput.value != '') {
+      total = (personSum + daySum) * 4000;
+      totalValue.innerHTML = total;
+    } else {
+      totalValue.innerHTML = 0;
+    }
+  });
+
+  dayInput.addEventListener('change', function() {
+    daySum += +this.value;
+
+    if (personInput.value != '' && dayInput.value != '') {
+      total = (personSum + daySum) * 4000;
+      totalValue.innerHTML = total;
+    } else {
+      totalValue.innerHTML = 0;
+    }
+  });
+
+  select.addEventListener('change', function() {
+    if (personInput.value != '' && dayInput.value != '') {
+      let a = total;
+      totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+    } else {
+      totalValue.innerHTML = 0;
+    }
+  });
 });
