@@ -1,0 +1,28 @@
+{
+  "name": "yoga",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "babel-loader": "^8.1.0",
+    "babel-plugin-es6-promise": "^1.1.1",
+    "es6-promise": "^4.2.8"
+  },
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OrangeOffic/yoga.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OrangeOffic/yoga/issues"
+  },
+  "homepage": "https://github.com/OrangeOffic/yoga#readme"
+}
